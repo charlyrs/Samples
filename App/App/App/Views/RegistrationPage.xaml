@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:app="clr-namespace:App.ViewModels" x:DataType="app:UserViewModel"
+             x:Class="App.Views.RegistrationPage">
+    <ContentPage.Content>
+        <StackLayout Margin="20,35,20,20">
+            
+                <Label 
+                Text="Welcome!"
+                FontSize="30"
+                    Padding="0,30"
+                HorizontalOptions="Center"/>
+            
+            <Frame CornerRadius="18" Padding="30" BorderColor="Black" >
+                <StackLayout>
+                    
+                        <Entry Placeholder="Email"
+                   ClearButtonVisibility="WhileEditing"
+                   TextColor="Pink"
+                   Text="{Binding UserEmail}"
+                   />
+                    
+
+                    <Entry
+                Placeholder="Password"
+                IsPassword="True"
+                ClearButtonVisibility="WhileEditing"
+                TextColor="DarkSlateBlue" 
+                Text="{Binding UserPassword}"
+                />
+            
+                <Entry
+                Placeholder="Nickname"
+               
+                ClearButtonVisibility="WhileEditing"
+                TextColor="DarkSlateBlue" 
+                Text="{Binding UserNickname}"
+                />
+                </StackLayout>
+            </Frame>
+            <Label >
+                
+            </Label>
+                <Button 
+                Text="Sign Up"
+                BackgroundColor="DeepPink"
+                TextColor="White"
+                Clicked="ToMyPage"
+                CornerRadius="8"
+                Command="{Binding AddCommand}"
+            />
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
