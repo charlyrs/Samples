@@ -13,13 +13,10 @@ namespace App
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserPage : ContentPage
     {
-        public UserPage(UserRepo repo)
+        public UserPage(UserViewModel user)
         {
-            var user = repo.GetLastUser();
-            BindingContext = new UserViewModel(repo) { UserEmail = user.Email, 
-                UserNickname = user.Nickname, 
-                UserPassword = user.Password 
-            };
+           
+            BindingContext = user;
             
             InitializeComponent();
             

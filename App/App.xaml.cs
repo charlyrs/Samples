@@ -9,8 +9,12 @@ namespace App
     public partial class App : Application
     {
         public readonly string DBpath;
+        public static UserRepo UserRepository;
+        public static ProjectRepo ProjectRepository;
         public App(string dbPath)
         {
+            UserRepository = new UserRepo(dbPath);
+            ProjectRepository = new ProjectRepo(dbPath);
             InitializeComponent();
             var repo = new UserRepo(dbPath);
             var prRepo = new ProjectRepo(dbPath);

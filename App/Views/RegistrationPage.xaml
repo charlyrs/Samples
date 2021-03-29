@@ -16,10 +16,13 @@
                     
                         <Entry Placeholder="Email"
                    ClearButtonVisibility="WhileEditing"
-                   TextColor="Pink"
+                   TextColor="Black"
                    Text="{Binding UserEmail}"
-                   />
-                    
+                   
+                   >
+                            
+                    </Entry>
+
 
                     <Entry
                 Placeholder="Password"
@@ -46,9 +49,11 @@
                 BackgroundColor="DeepPink"
                 TextColor="White"
                 Clicked="ToMyPage"
-                CornerRadius="8"
-                Command="{Binding AddCommand}"
-            />
+                CornerRadius="30"
+                Command="{Binding AddCommand}">
+              
+
+            </Button>
             
         </StackLayout>
     </ContentPage.Content>

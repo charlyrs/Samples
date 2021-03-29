@@ -29,7 +29,32 @@ namespace App
                 return null;
             }
         }
-        //public async 
+        public User GetUserByNickname(string name)
+        {
+            try
+            {
+                var products = _databaseContext.Users.Where(predicate: u => u.Nickname == name);
+
+                return products.FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task <IEnumerable<Project>> GetUsersProjects(User user)
+        {
+            try
+            {
+                var projects = user.Projects;
+                return projects;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
         public async Task<User> GetUserByIdAsync(int id)
         {

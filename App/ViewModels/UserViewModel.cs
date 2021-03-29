@@ -24,12 +24,20 @@ namespace App.ViewModels
                 OnPropertyChanged();
             }
         }
+        
 
         public string UserEmail { get; set; }
 
         public string UserPassword { get; set; }
         public string UserNickname { get; set; }
 
+       // public int UserID { get; set; }
+        public List<Project> UserProjects { get; set; }
+
+        /*public User FindUserByName (string name)
+        {
+            var user = _userRepo.
+        }*/
         public ICommand RefreshCommand
         {
             get
@@ -52,11 +60,14 @@ namespace App.ViewModels
                         Email = UserEmail,
                         Password = UserPassword,
                         Nickname = UserNickname
+                        
                     };
+                   
                     await _userRepo.AddUserAsync(user);
                 });
             }
         }
+       
 
         public UserViewModel(UserRepo userRepo)
         {

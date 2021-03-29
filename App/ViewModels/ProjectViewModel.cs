@@ -10,7 +10,9 @@ namespace App.ViewModels
     public class ProjectViewModel
     {
         private readonly ProjectRepo _projectRepo;
-        private readonly User Creator;
+        private readonly UserRepo _userRepo;
+
+        //private  User Creator;
         private IEnumerable<Project> _projects;
 
 
@@ -18,7 +20,7 @@ namespace App.ViewModels
         {
             get
             {
-                return _projects;
+                return Creator.Projects;
             }
             set
             {
@@ -30,6 +32,9 @@ namespace App.ViewModels
         public string ProjectTitle { get; set; }
 
         public string ProjectsDescribtion { get; set; }
+        public User Creator { get; set; }
+        public List <User> ProjectUsers { get; set; }
+
         //public string UserNickname { get; set; }
 
         public ICommand RefreshCommand
@@ -53,19 +58,27 @@ namespace App.ViewModels
                     {
                         Title = ProjectTitle,
                         Describtion = ProjectsDescribtion,
+                        CreatorId = Creator.Id
+                        
 
                         
                     };
-
+                    this.ProjectUsers.Add(Creator);
                     project.Users.Add(Creator);
+                    var user = _userRepo.GetUserByNickname(Creator.Nickname);
+                    user.Projects.Add(project);
+                    _ = _userRepo.UpdateUserAsync(user);
                     await _projectRepo.AddProjectAsync(project);
+                    /*Projects = await _projectRepo.GetProjectsAsync();
+                    OnPropertyChanged("Projects");*/
                 });
             }
         }
 
-        public ProjectViewModel(ProjectRepo projectRepo)
+        public ProjectViewModel(ProjectRepo projectRepo, UserRepo model)
         {
             _projectRepo = projectRepo;
+            _userRepo = model;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

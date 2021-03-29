@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using App.ViewModels;
 
 namespace App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StartPage : ContentPage
+    public partial class CreateProject : ContentPage
     {
-        public StartPage()
+        public CreateProject(ProjectViewModel model)
         {
+
+            BindingContext = model;
             InitializeComponent();
-        }
-        private async void ToAppPage(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ProjectsPage());
         }
     }
 }

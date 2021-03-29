@@ -15,16 +15,16 @@ namespace App.Views
     public partial class MyPage : TabbedPage
     {
         private readonly string path;
-        public MyPage(string dbpath)
+        public MyPage(UserViewModel model)
         {
             InitializeComponent();
-            path = dbpath;
-            var repo = new UserRepo(dbpath);
-            var projectRepo = new ProjectRepo(dbpath);
-            NavigationPage navigationPage = new NavigationPage(new UserPage(repo)) ;
-            NavigationPage prPage = new NavigationPage(new ProjectsPage()
-            {
-                BindingContext = new ProjectViewModel(projectRepo)
+            //path = dbpath;
+            //var repo = new UserRepo();
+            //var projectRepo = new ProjectRepo();
+            NavigationPage navigationPage = new NavigationPage(new UserPage(model)) ;
+            NavigationPage prPage = new NavigationPage(new ProjectsPage(model)
+            { 
+               // BindingContext = new ProjectViewModel(projectRepo) { Creator = repo.GetLastUser()}
             }) ;
 
           

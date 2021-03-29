@@ -8,17 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("App.Views.StartPage.xaml", "Views/StartPage.xaml", typeof(global::App.Views.StartPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("App.Views.CreateProject.xaml", "Views/CreateProject.xaml", typeof(global::App.Views.CreateProject))]
 
 namespace App.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\StartPage.xaml")]
-    public partial class StartPage : global::Xamarin.Forms.ContentPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\CreateProject.xaml")]
+    public partial class CreateProject : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(StartPage));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(CreateProject));
         }
     }
 }

@@ -4,23 +4,28 @@
              x:Class="App.UserPage">
     <ContentPage.Content>
         <StackLayout>
-            <Frame BackgroundColor="LightCoral">
-                <Label 
-                    Text="My Account"
-                    HorizontalOptions="Center"
-                    FontSize="30"
-                    FontAttributes="Bold"
-                    TextColor="White"/>
+            <Frame>
+                
             </Frame>
-            <Frame Padding="6">
+            <Frame Padding="6" BackgroundColor="DeepSkyBlue" CornerRadius="20">
                 <Label 
                     Text="Nickname :" 
                     FontSize="25"
+                    TextColor="White"
                     />
             </Frame>
             <Entry Placeholder="{Binding UserNickname}" FontSize="20" IsReadOnly="True"/>
-           
-           
+            
+            <Frame Padding="6" BackgroundColor="DeepPink" CornerRadius="20">
+                <Label 
+                    Text="Email :" 
+                    FontSize="25"
+                    TextColor="White"      
+                    />
+            </Frame>
+            <Entry Placeholder="{Binding UserEmail}" FontSize="20" IsReadOnly="True" />
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
