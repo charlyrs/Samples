@@ -1,0 +1,12 @@
+D:\samples\data\App\App.Database\bin\Debug\netstandard2.1\App.Database.deps.json
+D:\samples\data\App\App.Database\bin\Debug\netstandard2.1\App.Database.dll
+D:\samples\data\App\App.Database\bin\Debug\netstandard2.1\App.Database.pdb
+D:\samples\data\App\App.Database\bin\Debug\netstandard2.1\App.dll
+D:\samples\data\App\App.Database\bin\Debug\netstandard2.1\App.pdb
+D:\samples\data\App\App.Database\obj\Debug\netstandard2.1\App.Database.csprojAssemblyReference.cache
+D:\samples\data\App\App.Database\obj\Debug\netstandard2.1\App.Database.AssemblyInfoInputs.cache
+D:\samples\data\App\App.Database\obj\Debug\netstandard2.1\App.Database.AssemblyInfo.cs
+D:\samples\data\App\App.Database\obj\Debug\netstandard2.1\App.Database.csproj.CoreCompileInputs.cache
+D:\samples\data\App\App.Database\obj\Debug\netstandard2.1\App.Database.csproj.CopyComplete
+D:\samples\data\App\App.Database\obj\Debug\netstandard2.1\App.Database.dll
+D:\samples\data\App\App.Database\obj\Debug\netstandard2.1\App.Database.pdb
