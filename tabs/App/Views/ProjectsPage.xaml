@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:App.ViewModels" x:DataType="viewmodels:UserViewModel"
+             x:Class="App.ProjectsPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20, 10,20,20">
+
+            <ListView ItemsSource="{Binding UserProjects}" />
+            <Button 
+                Text=" + Add Project"
+                BorderColor="Pink"
+                BorderWidth="1"
+                BackgroundColor="White"
+                TextColor="DeepPink"
+                CornerRadius="15"
+                Clicked="ToCreateProjectPage"
+                
+                />
+            
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
