@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:App.ViewModels" x:DataType="viewmodels:UserViewModel"
+             x:Class="App.UserPage">
+    <ContentPage.Content>
+        <StackLayout Margin="10,30">
+
+            <Frame Padding="10" Margin="10,40,10,10" BackgroundColor="DeepSkyBlue" CornerRadius="20">
+                <FlexLayout >
+                    <Label 
+                    Text="Nickname:   "
+                    
+                    FontSize="30"
+       
+                    TextColor="White"
+                   
+                    />
+                <Label Text="{Binding UserNickname}" 
+                   FontSize="30"
+                       TextColor="White"
+                       HorizontalTextAlignment="End"
+                   
+                   />
+                </FlexLayout>
+            </Frame>
+            
+            
+            <Frame Padding="10" Margin="10,40,10,10" BackgroundColor="DeepPink" CornerRadius="20">
+                <FlexLayout  >
+                    <Label 
+                    Text="Email:  " 
+                    FontSize="30"
+                    TextColor="White" 
+                   
+                    />
+                    <Label Text="{Binding UserEmail}" 
+                           FontSize="30"
+                           TextColor="White"
+                           HorizontalTextAlignment="End"/>
+                </FlexLayout>
+            </Frame>
+            
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
