@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:App.ViewModels" x:DataType="viewmodels:ProjectViewModel"
              x:Class="App.Views.CreateProject">
     <ContentPage.Content>
-        <StackLayout Padding="20,20,20,20">
+        <StackLayout Padding="20,60,20,20">
             <Entry 
                 
                 Placeholder="Tiltle"
@@ -14,7 +14,12 @@
             <Button 
                 Text="Add"
                 Command="{Binding AddCommand}"
-                Clicked="BackToProjects"/>
+                Clicked="BackToProjects"
+                BackgroundColor="DeepSkyBlue"
+                TextColor="White"
+                Margin="10,20,10,10"
+                CornerRadius="10"
+                />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -90,6 +90,18 @@ namespace App.Database
                 return false;
             }
         }
+        public async Task<List<User>> GetUsers(Project project)
+        {
+            try
+            {
+                var users = _databaseContext.Users.Where(u => u.Projects.Any(p => p.Id == project.Id));
+                return users.ToList();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
 
         public async Task<bool> UpdateProjectAsync(Project product)

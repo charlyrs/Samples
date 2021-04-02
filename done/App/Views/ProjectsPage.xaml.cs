@@ -30,6 +30,19 @@ namespace App
             var u = (UserViewModel)BindingContext;
             await Navigation.PushAsync(new CreateProject(mainModel, u));
         }
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            await mainModel.UpdateProjects();
+            Project selectedFriend = (Project)e.SelectedItem;
+            mainModel.ProjectTitle = selectedFriend.Title;
+            mainModel.ProjectsDescribtion = selectedFriend.Describtion;
+
+            ProjectView projectView = new ProjectView
+            {
+                BindingContext = mainModel
+            };
+            await Navigation.PushAsync(projectView);
+        }
 
     }
 }

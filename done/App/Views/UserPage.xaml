@@ -25,7 +25,7 @@
             </Frame>
             
             
-            <Frame Padding="10" Margin="10,40,10,10" BackgroundColor="DeepPink" CornerRadius="20">
+            <Frame Padding="10" Margin="10,40,10,10" BackgroundColor="DeepSkyBlue" CornerRadius="20">
                 <FlexLayout  >
                     <Label 
                     Text="Email:  " 

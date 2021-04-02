@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout Margin="20,35,20,20">
 
-            <Image Source="a.png"
+            <Image Source="User.png"
                    HorizontalOptions="Center"
                    WidthRequest="100"/>
 
@@ -44,7 +44,7 @@
             </Label>
                 <Button 
                 Text="Sign Up"
-                BackgroundColor="DeepPink"
+                BackgroundColor="DeepSkyBlue"
                 TextColor="White"
                 Clicked="ToMyPage"
                 CornerRadius="30"

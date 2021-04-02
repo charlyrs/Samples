@@ -36,3 +36,4 @@ D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\CreateProject.xaml.g.
 D:\samples\tabs\App\App\App\bin\Debug\netstandard2.1\App.Database.dll
 D:\samples\tabs\App\App\App\bin\Debug\netstandard2.1\App.Database.pdb
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\App.csproj.CopyComplete
+D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\ProjectView.xaml.g.cs

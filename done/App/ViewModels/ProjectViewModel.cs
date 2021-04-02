@@ -1,7 +1,9 @@
 ﻿using App.Database;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -35,7 +37,19 @@ namespace App.ViewModels
 
 
         
-
+        public async Task<bool> UpdateProjects()
+        {
+            try
+            {
+                CurrentUser.Projects = await _userRepo.GetProjects(CurrentUser);
+                //ProjectUsers = _projectRepo.GetUsers()
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
         public ICommand AddCommand
         {
             get
@@ -54,15 +68,7 @@ namespace App.ViewModels
                     var id = project.Id;
                    // var u = await _userRepo.GetUserByIdAsync(CurrentUser.Id);
                     await _projectRepo.AddUserToProjectAsync(CurrentUser.Id, id);
-                    //project.Users.Add(CurrentUser);
-                    /* var user = await _userRepo.GetUserByIdAsync(CurrentUser.Id);
-                     user.Projects.Add(project);*/
-                    //await _userRepo.UpdateUserAsync(user);
-
-                    //CurrentUser.Projects.Add(project);
-                    //await _projectRepo.UpdateProjectAsync(project);
-                    // CurrentUser.Projects.Add(project);
-                    //await _userRepo.UpdateUserAsync(CurrentUser);
+                    
 
                 });
             }
