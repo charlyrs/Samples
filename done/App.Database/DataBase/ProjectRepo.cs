@@ -33,12 +33,7 @@ namespace App.Database
             }
         }
 
-        public List<Project> GetProjectsByUser(User u)
-        {
-            return u.Projects;
-        }
-      
-
+       
         
 
         public async Task<Project> GetProjectByIdAsync(int id)
