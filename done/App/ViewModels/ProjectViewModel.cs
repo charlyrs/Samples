@@ -42,7 +42,6 @@ namespace App.ViewModels
             try
             {
                 CurrentUser.Projects = await _userRepo.GetProjects(CurrentUser);
-                //ProjectUsers = _projectRepo.GetUsers()
                 return true;
             }
             catch (Exception e)
@@ -62,11 +61,10 @@ namespace App.ViewModels
                         Describtion = ProjectsDescribtion,
                         Users = new List<User>()
                     };
-                    //проблема тут! добавление проекта в базу не работает
+                    
                    
                     var track = await _projectRepo.AddProjectAsync(project);
-                    var id = project.Id;
-                   // var u = await _userRepo.GetUserByIdAsync(CurrentUser.Id);
+                   
                     await _projectRepo.AddUserToProjectAsync(CurrentUser.Id, id);
                     
 
@@ -79,7 +77,7 @@ namespace App.ViewModels
         {
             _projectRepo = projectRepo;
             _userRepo = userRepo;
-            //var user =_userRepo.GetUserByNickname(currentUser.UserNickname);
+            
             CurrentUser = currentUser.UserModel;
         }
 

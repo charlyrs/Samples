@@ -49,7 +49,7 @@ namespace App.ViewModels
               var user = await _userRepo.GetUserByNickname(UserNickname);
               var a = await _userRepo.GetProjects(user);
               UserProjects = a;
-            UserModel.Projects = a;
+              UserModel.Projects = a;
             
                
         }

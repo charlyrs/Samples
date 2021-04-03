@@ -35,8 +35,7 @@ namespace App
             {
                
                 var projects = _databaseContext.Projects.Where(p => p.Users.Any(u => us.Nickname == u.Nickname));
-                /*var project = projects.ToList()[^1];
-                var users = _databaseContext.Users.Where(u => u.Projects.Any(pr => pr.Describtion == project.Describtion));*/
+               
                 return projects.ToList();
             }
             catch (Exception e)
@@ -150,8 +149,6 @@ namespace App
             {
                 return false;
             }
-        }
-
-      
+        }      
     }
 }
