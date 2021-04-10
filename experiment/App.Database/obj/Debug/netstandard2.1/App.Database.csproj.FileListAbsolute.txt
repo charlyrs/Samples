@@ -1,0 +1,9 @@
+D:\samples\tabs\App\App.Database\obj\Debug\netstandard2.1\App.Database.AssemblyInfoInputs.cache
+D:\samples\tabs\App\App.Database\obj\Debug\netstandard2.1\App.Database.AssemblyInfo.cs
+D:\samples\tabs\App\App.Database\obj\Debug\netstandard2.1\App.Database.csproj.CoreCompileInputs.cache
+D:\samples\tabs\App\App.Database\bin\Debug\netstandard2.1\App.Database.deps.json
+D:\samples\tabs\App\App.Database\bin\Debug\netstandard2.1\App.Database.dll
+D:\samples\tabs\App\App.Database\bin\Debug\netstandard2.1\App.Database.pdb
+D:\samples\tabs\App\App.Database\obj\Debug\netstandard2.1\App.Database.dll
+D:\samples\tabs\App\App.Database\obj\Debug\netstandard2.1\App.Database.pdb
+D:\samples\tabs\App\App.Database\obj\Debug\netstandard2.1\App.Database.csprojAssemblyReference.cache

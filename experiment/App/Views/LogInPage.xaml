@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:App.ViewModels"
+             x:DataType="viewmodels:LogInViewModel"
+             x:Class="App.Views.LogInPage">
+    <ContentPage.Content>
+        <StackLayout Margin="20,60,20,40">
+            <Frame Margin="30,40,30,10"
+                   CornerRadius="20"
+                   Padding="30">
+                <StackLayout>
+                    <Entry 
+                Placeholder="User Name"
+                ClearButtonVisibility="WhileEditing"
+                TextColor="Black"
+                Text="{Binding UserNickname}">
+
+                    </Entry>
+            <Entry
+                Placeholder="Password"
+                IsPassword="True"
+                ClearButtonVisibility="WhileEditing"
+                TextColor="DarkSlateBlue" 
+                Text="{Binding UserPassword}"
+            />
+                </StackLayout>
+            </Frame>
+            <Button
+                Text="Log In"
+                Command="{Binding LogInCommand}"
+                Margin="40,20,40,0"
+                BackgroundColor="Teal"
+                TextColor="White"
+                CornerRadius="30"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:App.ViewModels" x:DataType="viewmodels:UserViewModel"
+             x:Class="App.Views.ProjectInfo">
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,20,20">
+            <Frame HasShadow="True"  CornerRadius="20">
+                <StackLayout >
+                    <Frame Padding="7" BackgroundColor="Teal" CornerRadius="15" Margin="10,5,10,20">
+
+
+                        <Label Text="{Binding ProjectTitle}"
+                               TextColor="White"
+                               FontSize="35"
+                               HorizontalOptions="Center"
+                        />
+                    </Frame>
+                    <Label Text="{Binding ProjectsDescription}"
+                           TextColor="Teal"
+                           FontSize="25"
+                           HorizontalTextAlignment="Center"
+                    />
+                    <Label Text="Users:"
+                           
+                           FontSize="20"></Label>
+
+                    <ListView  ItemsSource="{Binding ProjectUsers}"/>
+                    <Label Text="Columns:"
+                           
+                           FontSize="20"></Label>
+                    <ListView ItemsSource="{Binding ProjectColumns}"></ListView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
