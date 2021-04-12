@@ -4,14 +4,11 @@ using System.Text;
 
 namespace App.Database.Models
 {
-    public class Column
+    public class ProjectTask
     {
         public int Id { get; set; }
-
         public string Title { get; set; }
-
-        public Project Project { get; set; }
-        public List<ProjectTask> Tasks { get; set; }
+        public Column Column { get; set; }
         public override string ToString()
         {
             return string.Format(Title);

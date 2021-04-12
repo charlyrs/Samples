@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:App.ViewModels" x:DataType="viewmodels:ProjectViewModel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:App.ViewModels" xmlns:views="clr-namespace:App.Views" 
+             x:DataType="viewmodels:ColumnsViewModel"
              x:Class="App.Views.ProjectView">
     <ContentPage.Content>
         
@@ -18,7 +19,9 @@
                          BackgroundColor="CadetBlue"
                          TextColor="White"
                          CornerRadius="20"
-                         Margin="0,20,0,10"></Button>
+                         Margin="0,20,0,10"
+                         Clicked="ToDoTaskPage"></Button>
+                 <ListView ItemsSource="{Binding ToDoColumn.Tasks}"></ListView>
              </StackLayout>
             </Frame>
             <Frame  CornerRadius="20" Margin="5,0,5,10" WidthRequest="170" >
@@ -31,9 +34,11 @@
                                 BackgroundColor="CadetBlue"
                                 TextColor="White"
                                 CornerRadius="20"
+                                Clicked="InProgressTaskPage"
                                 Margin="0,20,0,10"></Button>
+                        <ListView ItemsSource="{Binding InProgressColumn.Tasks}"></ListView>
                     </StackLayout>
-
+                
                 </Frame>
                 <Frame  CornerRadius="20" Margin="5,0,5,10" WidthRequest="170">
                     <StackLayout>
@@ -44,7 +49,9 @@
                                 BackgroundColor="CadetBlue"
                                 TextColor="White"
                                 CornerRadius="20"
+                                Clicked="DoneTaskPage"
                                 Margin="0,20,0,10"></Button>
+                        <ListView ItemsSource="{Binding DoneColumn.Tasks}"></ListView>
 </StackLayout>
                 </Frame>
            

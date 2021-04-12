@@ -18,30 +18,6 @@ namespace App.Database
             _databaseContext = new DatabaseContext(dbPath);
         }
 
-       
-
-        public async Task<IEnumerable<Project>> GetProjectsAsync()
-        {
-            try
-            {
-                var projects = await _databaseContext.Projects.ToListAsync();
-
-                return projects;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public List<Project> GetProjectsByUser(User u)
-        {
-            return u.Projects;
-        }
-      
-
-        
-
         public async Task<Project> GetProjectByIdAsync(int id)
         {
             try
@@ -56,7 +32,6 @@ namespace App.Database
             }
         }
         
-
 
         public async Task<bool> AddProjectAsync(Project project)
         {
@@ -81,9 +56,11 @@ namespace App.Database
             try
             {
                 var project = await _databaseContext.Projects.FindAsync(projectId);
+
                 var c1 = new Column() {Title = "To Do", Project = project};
                 var c2 = new Column() { Title = "In Progress", Project = project};
                 var c3 = new Column() { Title = "Done", Project = project};
+
                 await _databaseContext.Columns.AddAsync(c1);
                 await _databaseContext.Columns.AddAsync(c2);
                 await _databaseContext.Columns.AddAsync(c3);
@@ -101,7 +78,6 @@ namespace App.Database
         {
             try
             {
-                //var project = await _databaseContext.Projects.FindAsync(projectId);
                 var columns = _databaseContext.Columns.Where(c => c.Project.Id == projectId);
                 var res = await columns.ToListAsync();
                 return res;
@@ -112,12 +88,12 @@ namespace App.Database
                 return null;
             }
         }
-        public async Task<bool> AddUserToProjectAsync(int UserID, int ProjectID)
+        public async Task<bool> AddUserToProjectAsync(int userId, int projectId)
         {
             try
             {
-                var user = await _databaseContext.Users.FindAsync(UserID);
-                var project = await _databaseContext.Projects.FindAsync(ProjectID);
+                var user = await _databaseContext.Users.FindAsync(userId);
+                var project = await _databaseContext.Projects.FindAsync(projectId);
                 project.Users.Add(user);
                 await _databaseContext.SaveChangesAsync();
 
@@ -133,7 +109,8 @@ namespace App.Database
             try
             {
                 var users = _databaseContext.Users.Where(u => u.Projects.Any(p => p.Id == project.Id));
-                return users.ToList();
+                var res = await users.ToListAsync();
+                return res;
             }
             catch (Exception e)
             {

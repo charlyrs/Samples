@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:App.ViewModels" 
+             x:DataType="viewmodels:TaskViewModel"
+             x:Class="App.Views.CreateTask">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label Text="ADD TASK TO THE PROJECT"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   TextColor="CadetBlue"
+                   Margin="10,50,10,10"></Label>
+            <Frame Margin="10,30,10,0" CornerRadius="20">
+                <StackLayout>
+                    
+                    <Entry Text="{Binding TaskTitle}" 
+                           Placeholder="Title"></Entry>
+            <Button Text="+ Add"
+                    Margin="40,10,40,0"
+                    BackgroundColor="Teal"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Command="{Binding AddCommand}"
+                    Clicked="BackToProjectView"></Button>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

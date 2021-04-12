@@ -14,7 +14,6 @@ namespace App.Views
     public partial class CreateProject : ContentPage
     {
         private UserViewModel currentUser;
-
         public CreateProject(ProjectViewModel model, UserViewModel uModel)
         {
             currentUser = uModel;
@@ -25,9 +24,8 @@ namespace App.Views
         {
            
             await currentUser.UpdateUserProjects();
+            var sm = Navigation.ModalStack;
             await Navigation.PushModalAsync(new MyPage(currentUser));
-
-            
         }
     }
 }

@@ -16,20 +16,13 @@ namespace App
     {
         public UserPage(UserViewModel user)
         {
-           
             BindingContext = user;
-            
-            
             InitializeComponent();
             
         }
         private async void ToRegistrationPage(object sender, EventArgs e)
         {
-            //var userVm = (UserViewModel)BindingContext;
-           // await Navigation.
-           await Navigation.PopModalAsync();
-           // await Navigation.PopToRootAsync();
-
+            await Navigation.PopModalAsync();
         }
     }
 }

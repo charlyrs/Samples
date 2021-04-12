@@ -25,8 +25,7 @@ namespace App.Views
         }
         private async void ToLogInPage(object sender, EventArgs e)
         {
-           // var userVm = (UserViewModel)BindingContext;
-           var page= new LogInPage(new UserViewModel(new UserRepo(App.DBpath)));
+            var page= new LogInPage(new UserViewModel(new UserRepo(App.DBpath)));
             await Navigation.PushAsync(page);
 
         }

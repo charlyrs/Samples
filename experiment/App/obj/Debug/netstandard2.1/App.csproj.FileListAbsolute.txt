@@ -20,7 +20,6 @@ D:\samples\tabs\App\App\App\bin\Debug\netstandard2.1\ref\App.dll
 D:\samples\tabs\App\App\App\bin\Debug\netstandard2.1\App.pdb
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\App.csprojAssemblyReference.cache
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\App.xaml.g.cs
-D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\MainPage.xaml.g.cs
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\ProjectsPage.xaml.g.cs
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\RegistrationPage.xaml.g.cs
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\UserPage.xaml.g.cs
@@ -40,3 +39,4 @@ D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\ProjectView.xaml.g.cs
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\LogInPage.xaml.g.cs
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\ProjectInfo.xaml.g.cs
 D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\ProjectTabbedPage.xaml.g.cs
+D:\samples\tabs\App\App\App\obj\Debug\netstandard2.1\Views\CreateTask.xaml.g.cs

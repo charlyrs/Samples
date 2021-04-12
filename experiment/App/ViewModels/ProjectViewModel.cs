@@ -6,11 +6,12 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using App.Database.DataBase;
 using Xamarin.Forms;
 
 namespace App.ViewModels
 {
-    public class ProjectViewModel
+    public class ProjectViewModel : INotifyPropertyChanged
     {
         private readonly ProjectRepo _projectRepo;
         private readonly UserRepo _userRepo;
@@ -22,7 +23,7 @@ namespace App.ViewModels
         public  List<Column> ProjectColumns { get; set; }
         public List <User> ProjectUsers { get; set; }
 
-        public async Task<bool> Update()
+        /*public async Task<bool> Update()
         {
             try
             {
@@ -36,18 +37,21 @@ namespace App.ViewModels
             {
                 return false;
             }
-        }
-        public async Task<bool> UpdateViewModel(Project pr)
+        }*/
+        public async Task<bool> UpdateViewModel(int projectId)
         {
             try
             {
+                var pr = await _projectRepo.GetProjectByIdAsync(projectId);
                 ProjectID = pr.Id;
                 ProjectTitle = pr.Title;
                 ProjectsDescription = pr.Description;
-                ProjectUsers = pr.Users;
-                var project = await _projectRepo.GetProjectByIdAsync(pr.Id);
-                var c = await _projectRepo.GetColumns(pr.Id);
-                ProjectColumns = c;
+                ProjectUsers = await _projectRepo.GetUsers(pr);
+                ProjectColumns = await _projectRepo.GetColumns(pr.Id); ;
+                var repo = new ColumnRepo(App.DBpath);
+                ProjectColumns[0].Tasks = await repo.GeTasks(ProjectColumns[0].Id); 
+                ProjectColumns[1].Tasks = await repo.GeTasks(ProjectColumns[1].Id); 
+                ProjectColumns[2].Tasks = await repo.GeTasks(ProjectColumns[2].Id); 
                 return true;
             }
             catch (Exception e)
@@ -69,13 +73,10 @@ namespace App.ViewModels
                         Users = new List<User>()
                     };
                     var track = await _projectRepo.AddProjectAsync(project);
-                    var id = project.Id;
                     await _projectRepo.AddDefaultColumnsToProject(project.Id);
-                    ProjectColumns = await _projectRepo.GetColumns(id);
-                    ProjectID = id;
-                    await _projectRepo.AddUserToProjectAsync(CurrentUser.Id, id);
-                    
-
+                    ProjectColumns = await _projectRepo.GetColumns(project.Id);
+                    ProjectID = project.Id;
+                    await _projectRepo.AddUserToProjectAsync(CurrentUser.Id, project.Id);
                 });
             }
         }

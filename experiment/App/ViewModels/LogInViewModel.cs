@@ -12,7 +12,6 @@ namespace App.ViewModels
     public class LogInViewModel : INotifyPropertyChanged
     {
         private UserRepo _userRepo;
-        //public User UserModel;
 
         public string UserNickname { get; set; }
         public string UserPassword { get; set; }

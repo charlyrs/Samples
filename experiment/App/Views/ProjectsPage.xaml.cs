@@ -19,8 +19,8 @@ namespace App
         public ProjectsPage(UserViewModel model)
         {
             var repo = new ProjectRepo(App.DBpath);
-            var urepo = new UserRepo(App.DBpath);
-            var prVModel = new ProjectViewModel(repo, urepo, model);
+            var userRepo = new UserRepo(App.DBpath);
+            var prVModel = new ProjectViewModel(repo, userRepo, model);
             mainModel = prVModel;
             BindingContext = model;
             InitializeComponent();
@@ -36,11 +36,10 @@ namespace App
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             
-            Project selectedProject = (Project)e.SelectedItem;
-            await mainModel.UpdateViewModel(selectedProject);
-
-            ProjectTabbedPage projectView = new ProjectTabbedPage(mainModel);
-            await Navigation.PushAsync(projectView);
+            var selectedProject = (Project)e.SelectedItem;
+            await mainModel.UpdateViewModel(selectedProject.Id);
+            var projectTabbedPage = new ProjectTabbedPage(mainModel);
+            await Navigation.PushAsync(projectTabbedPage);
         }
 
     }

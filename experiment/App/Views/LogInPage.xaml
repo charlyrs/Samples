@@ -10,10 +10,10 @@
                    Padding="30">
                 <StackLayout>
                     <Entry 
-                Placeholder="User Name"
-                ClearButtonVisibility="WhileEditing"
-                TextColor="Black"
-                Text="{Binding UserNickname}">
+                                Placeholder="User Name"
+                                ClearButtonVisibility="WhileEditing"
+                                TextColor="Black"
+                                Text="{Binding UserNickname}">
 
                     </Entry>
             <Entry

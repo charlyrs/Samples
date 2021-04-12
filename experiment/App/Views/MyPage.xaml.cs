@@ -23,18 +23,13 @@ namespace App.Views
 
           
             navigationPage.Title = "Account";
-           // navigationPage.BackgroundImageSource = "User.png";
             prPage.Title = "Projects";
-            //prPage.BackgroundImageSource = "pr.jpg";
-            this.BarBackgroundColor = Color.Teal;
             
+            this.BarBackgroundColor = Color.Teal;
             this.BarTextColor = Color.White;
 
             Children.Add(prPage);
             Children.Add(navigationPage);
-            
-            
-            
         }
     }
 }

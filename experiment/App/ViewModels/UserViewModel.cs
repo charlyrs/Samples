@@ -22,11 +22,9 @@ namespace App.ViewModels
         public async Task UpdateUserProjects()
         {
               var user = await _userRepo.GetUserByNickname(UserNickname);
-              var a = await _userRepo.GetProjects(user);
-              UserProjects = a;
-              UserModel.Projects = a;
-
-
+              var userProjects = await _userRepo.GetProjects(user);
+              UserProjects = userProjects;
+              UserModel.Projects = userProjects;
         }
 
         public ICommand AddCommand
@@ -44,8 +42,6 @@ namespace App.ViewModels
                         
                     };
 
-                    
-                   
                     await _userRepo.AddUserAsync(user);
                     UserModel = await _userRepo.GetUserByNickname(UserNickname);
                 });

@@ -7,7 +7,6 @@ namespace App.Interface
 {
     public interface IProjectRepo
     {
-        Task<IEnumerable<Project>> GetProjectsAsync();
 
         Task<Project> GetProjectByIdAsync(int id);
 
