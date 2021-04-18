@@ -9,22 +9,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Database
 {
-    public class ProjectRepo : IProjectRepo
+    public class ProjectRepository : IProjectRepository
     {
         private readonly DatabaseContext _databaseContext;
 
-        public ProjectRepo(string dbPath)
+        public ProjectRepository(string dbPath)
         {
             _databaseContext = new DatabaseContext(dbPath);
         }
 
-        public async Task<Project> GetProjectByIdAsync(int id)
+        public async Task<Project> GetProjectByIdAsync(int projectId)
         {
             try
             {
-                var product = await _databaseContext.Projects.FindAsync(id);
+                var project = await _databaseContext.Projects.FindAsync(projectId);
 
-                return product;
+                return project;
             }
             catch (Exception e)
             {
@@ -57,13 +57,13 @@ namespace App.Database
             {
                 var project = await _databaseContext.Projects.FindAsync(projectId);
 
-                var c1 = new Column() {Title = "To Do", Project = project};
-                var c2 = new Column() { Title = "In Progress", Project = project};
-                var c3 = new Column() { Title = "Done", Project = project};
+                var column1 = new Column() {Title = "To Do", Project = project};
+                var column2 = new Column() { Title = "In Progress", Project = project};
+                var column3 = new Column() { Title = "Done", Project = project};
 
-                await _databaseContext.Columns.AddAsync(c1);
-                await _databaseContext.Columns.AddAsync(c2);
-                await _databaseContext.Columns.AddAsync(c3);
+                await _databaseContext.Columns.AddAsync(column1);
+                await _databaseContext.Columns.AddAsync(column2);
+                await _databaseContext.Columns.AddAsync(column3);
                 await _databaseContext.SaveChangesAsync();
                 return true;
             }
@@ -78,7 +78,7 @@ namespace App.Database
         {
             try
             {
-                var columns = _databaseContext.Columns.Where(c => c.Project.Id == projectId);
+                var columns = _databaseContext.Columns.Include(c => c.Tasks).Where(c => c.Project.Id == projectId);
                 var res = await columns.ToListAsync();
                 return res;
 
@@ -119,11 +119,11 @@ namespace App.Database
         }
 
 
-        public async Task<bool> UpdateProjectAsync(Project product)
+        public async Task<bool> UpdateProjectAsync(Project project)
         {
             try
             {
-                var tracking = _databaseContext.Update(product);
+                var tracking = _databaseContext.Update(project);
 
                 await _databaseContext.SaveChangesAsync();
 
@@ -156,7 +156,5 @@ namespace App.Database
                 return false;
             }
         }
-
-        
     }
 }

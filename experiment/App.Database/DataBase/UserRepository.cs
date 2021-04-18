@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App
 {
-    public class UserRepo : IUserRepo
+    public class UserRepository : IUserRepository
     {
         private readonly DatabaseContext _databaseContext;
 
-        public UserRepo(string dbPath)
+        public UserRepository(string dbPath)
         {
             _databaseContext = new DatabaseContext(dbPath);
         }
@@ -28,11 +28,11 @@ namespace App
                 return null;
             }
         }
-        public async Task<List<Project>> GetProjects(User us)
+        public async Task<List<Project>> GetProjects(User user)
         {
             try
             {
-                var projects =  _databaseContext.Projects.Include(s => s.Users).Where(p => p.Users.Any(u => us.Nickname == u.Nickname));
+                var projects =  _databaseContext.Projects.Include(s => s.Users).Where(p => p.Users.Any(u => user.Nickname == u.Nickname));
                 
                 return projects.ToList();
             }
@@ -90,16 +90,14 @@ namespace App
                 return false;
             }
         }
-        public async Task<bool> AddProjectToUserAsync(int userID, int prID)
+        public async Task<bool> AddProjectToUserAsync(int userId, int projectId)
         {
             try
             {
-                var u = await _databaseContext.Users.FindAsync(userID);
-                var p = await _databaseContext.Projects.FindAsync(prID);
-                u.Projects.Add(p);
+                var user = await _databaseContext.Users.FindAsync(userId);
+                var project = await _databaseContext.Projects.FindAsync(projectId);
+                user.Projects.Add(project);
                 await _databaseContext.SaveChangesAsync();
-
-
                 return true;
             }
             catch (Exception e)
@@ -107,7 +105,7 @@ namespace App
                 return false;
             }
         }
-
+        //shit
         public async Task<bool> UpdateUserAsync(User user)
         {
             try

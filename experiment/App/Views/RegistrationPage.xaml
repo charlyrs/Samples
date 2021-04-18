@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:app="clr-namespace:App.ViewModels" x:DataType="app:UserViewModel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:app="clr-namespace:App.ViewModels" 
+             x:DataType="app:RegistrationViewModel"
              x:Class="App.Views.RegistrationPage">
     <ContentPage.Content>
         <StackLayout Margin="20,55,20,20">
@@ -41,10 +42,9 @@
                 Text="Sign Up"
                 BackgroundColor="Teal"
                 TextColor="White"
-                Clicked="ToMyPage"
                 CornerRadius="30"
                 Margin="40,0,40,0"
-                Command="{Binding AddCommand}">
+                Command="{Binding SignUpCommand}">
                 </Button>
             <Label Margin="0,20,0,0"
                    Text="Already have an account?"

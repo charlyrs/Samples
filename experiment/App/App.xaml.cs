@@ -17,12 +17,11 @@ namespace App
         {
             DBpath = dbPath;
             InitializeComponent();
-            var repo = new UserRepo(dbPath);
-            var pr = new ProjectRepo(dbPath);
-            
+            var userRepository = new UserRepository(dbPath);
+
             MainPage = new NavigationPage(new RegistrationPage()
             {
-                BindingContext = new UserViewModel(repo)
+                BindingContext = new RegistrationViewModel(userRepository)
             })
             {
                 BarBackgroundColor = Color.Teal

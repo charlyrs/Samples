@@ -14,22 +14,22 @@ namespace App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyPage : TabbedPage
     {
-        public MyPage(UserViewModel model)
+        public MyPage(UserViewModel userViewModel)
         {
             InitializeComponent();
             
-            NavigationPage navigationPage = new NavigationPage(new UserPage(model)) {BarBackgroundColor = Color.Teal} ;
-            NavigationPage prPage = new NavigationPage(new ProjectsPage(model)){BarBackgroundColor = Color.Teal};
+            NavigationPage userPage = new NavigationPage(new UserPage(userViewModel)) {BarBackgroundColor = Color.Teal} ;
+            NavigationPage projectPage = new NavigationPage(new ProjectsPage(userViewModel)){BarBackgroundColor = Color.Teal};
 
           
-            navigationPage.Title = "Account";
-            prPage.Title = "Projects";
+            userPage.Title = "Account";
+            projectPage.Title = "Projects";
             
             this.BarBackgroundColor = Color.Teal;
             this.BarTextColor = Color.White;
 
-            Children.Add(prPage);
-            Children.Add(navigationPage);
+            Children.Add(projectPage);
+            Children.Add(userPage);
         }
     }
 }

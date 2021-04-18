@@ -13,19 +13,16 @@ namespace App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateProject : ContentPage
     {
-        private UserViewModel currentUser;
-        public CreateProject(ProjectViewModel model, UserViewModel uModel)
+        private readonly UserViewModel _currentUser;
+        public CreateProject(ProjectViewModel projectViewModel, UserViewModel userViewModel)
         {
-            currentUser = uModel;
-            BindingContext = model;
+            _currentUser = userViewModel;
+            BindingContext = projectViewModel;
             InitializeComponent();
         }
         private async void BackToProjects(object sender, EventArgs e)
         {
-           
-            await currentUser.UpdateUserProjects();
-            var sm = Navigation.ModalStack;
-            await Navigation.PushModalAsync(new MyPage(currentUser));
+            await Navigation.PopAsync();
         }
     }
 }

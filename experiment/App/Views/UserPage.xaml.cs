@@ -14,9 +14,9 @@ namespace App
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserPage : ContentPage
     {
-        public UserPage(UserViewModel user)
+        public UserPage(UserViewModel userViewModel)
         {
-            BindingContext = user;
+            BindingContext = userViewModel;
             InitializeComponent();
             
         }

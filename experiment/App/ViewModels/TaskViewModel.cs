@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using App.Database.DataBase;
+using App.Database.Interface;
 using App.Database.Models;
 using Xamarin.Forms;
 
@@ -11,11 +12,11 @@ namespace App.ViewModels
 {
     public class TaskViewModel : INotifyPropertyChanged
     {
-        private readonly TaskRepo _taskRepo;
+        private readonly ITaskRepository _taskRepository;
 
-        public TaskViewModel(TaskRepo repo)
+        public TaskViewModel(ITaskRepository repository)
         {
-            _taskRepo = repo;
+            _taskRepository = repository;
         }
         public string TaskTitle { get; set; }
         public Column TaskColumn { get; set; }
@@ -30,8 +31,8 @@ namespace App.ViewModels
                         Title = TaskTitle,
                         Column = TaskColumn
                     };
-                    var cRepo = new ColumnRepo(App.DBpath);
-                    await cRepo.AddTaskToColumn(task, TaskColumn.Id);
+                    var columnRepository = new ColumnRepository(App.DBpath);
+                    await columnRepository.AddTaskToColumn(task, TaskColumn.Id);
 
                 });
             }

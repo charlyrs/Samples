@@ -15,14 +15,14 @@ namespace App
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectsPage : ContentPage
     {
-        private ProjectViewModel mainModel;
-        public ProjectsPage(UserViewModel model)
+        private ProjectViewModel _selectedViewModel;
+        public ProjectsPage(UserViewModel userViewModel)
         {
-            var repo = new ProjectRepo(App.DBpath);
-            var userRepo = new UserRepo(App.DBpath);
-            var prVModel = new ProjectViewModel(repo, userRepo, model);
-            mainModel = prVModel;
-            BindingContext = model;
+            var projectRepository = new ProjectRepository(App.DBpath);
+            var userRepository = new UserRepository(App.DBpath);
+            var projectViewModel = new ProjectViewModel(projectRepository, userRepository, userViewModel);
+            _selectedViewModel = projectViewModel;
+            BindingContext = userViewModel;
             InitializeComponent();
 
 
@@ -30,15 +30,15 @@ namespace App
         private async void ToCreateProjectPage(object sender, EventArgs e)
         {
             var u = (UserViewModel)BindingContext;
-            await Navigation.PushAsync(new CreateProject(mainModel, u));
+            await Navigation.PushAsync(new CreateProject(_selectedViewModel, u));
         }
         
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             
             var selectedProject = (Project)e.SelectedItem;
-            await mainModel.UpdateViewModel(selectedProject.Id);
-            var projectTabbedPage = new ProjectTabbedPage(mainModel);
+            await _selectedViewModel.UpdateViewModel(selectedProject.Id);
+            var projectTabbedPage = new ProjectTabbedPage(_selectedViewModel);
             await Navigation.PushAsync(projectTabbedPage);
         }
 

@@ -12,14 +12,14 @@ namespace App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LogInPage : ContentPage
     {
-        public LogInPage(UserViewModel uModel)
+        public LogInPage(UserViewModel userViewModel)
         {
-            var loginModel = new LogInViewModel(new UserRepo(App.DBpath))
+            var logInViewModel = new LogInViewModel(new UserRepository(App.DBpath))
             {
-                UserPassword = uModel.UserPassword,
-                UserNickname = uModel.UserNickname
+                UserPassword = userViewModel.UserPassword,
+                UserNickname = userViewModel.UserNickname
             };
-            BindingContext = loginModel;
+            BindingContext = logInViewModel;
             InitializeComponent();
         }
     }

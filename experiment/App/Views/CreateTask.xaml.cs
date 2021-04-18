@@ -19,22 +19,28 @@ namespace App.Views
         }
         private async void BackToProjectView(object sender, EventArgs e)
         {
-            var model = (ProjectViewModel)(Navigation.NavigationStack[^2].BindingContext);
-            await model.UpdateViewModel(model.ProjectID);
-            var toDo = model.ProjectColumns[0];
-            var inProgress = model.ProjectColumns[1];
-            var done = model.ProjectColumns[2];
-            var columnVm = new ColumnsViewModel(new ColumnRepo(App.DBpath))
+           /* var projectViewModel = (ProjectViewModel)(Navigation.NavigationStack[^2].BindingContext);
+            await projectViewModel.UpdateViewModel(projectViewModel.ProjectId);
+            var toDoColumn = projectViewModel.ProjectColumns[0];
+            var inProgressColumn = projectViewModel.ProjectColumns[1];
+            var doneColumn = projectViewModel.ProjectColumns[2];
+            var columnViewModel = new ColumnsViewModel(new ColumnRepository(App.DBpath))
             {
-                ProjectId = model.ProjectID,
-                ToDoColumn = toDo,
-                InProgressColumn = inProgress,
-                DoneColumn = done
+                ProjectId = projectViewModel.ProjectId,
+                ToDoColumn = toDoColumn,
+                InProgressColumn = inProgressColumn,
+                DoneColumn = doneColumn
 
             };
-
-            var page = (ProjectTabbedPage) Navigation.NavigationStack[^2];
-            page.Children[0].BindingContext = columnVm;
+            var aPageToReplace = new ProjectTabbedPage(projectViewModel)
+            {
+                Children = {new ProjectView() {BindingContext = columnViewModel}, new ProjectInfo() {BindingContext = projectViewModel}}
+            };
+            var pageToRemove = (ProjectTabbedPage) Navigation.NavigationStack[^2];
+            Navigation.RemovePage(pageToRemove);
+            Navigation.InsertPageBefore(aPageToReplace, this);
+           
+            //page.Children[0].BindingContext = columnVm;*/
             
             await Navigation.PopAsync();
         }

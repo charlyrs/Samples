@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using App.Database.Interface;
 using App.Database.Models;
 
 namespace App.Database.DataBase
 {
-    public class TaskRepo
+    public class TaskRepository : ITaskRepository
     {
         private readonly DatabaseContext _databaseContext;
 
-        public TaskRepo(string path)
+        public TaskRepository(string path)
         {
             _databaseContext = new DatabaseContext(path);
         }

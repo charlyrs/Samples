@@ -21,27 +21,27 @@ namespace App.Views
         }
         private async void ToDoTaskPage(object sender, EventArgs e)
         {
-            var model = new TaskViewModel(new TaskRepo(App.DBpath))
+            var taskViewModel = new TaskViewModel(new TaskRepository(App.DBpath))
             {
                 TaskColumn = ((ColumnsViewModel)BindingContext).ToDoColumn
             };
-            await Navigation.PushAsync(new CreateTask(){BindingContext = model});
+            await Navigation.PushAsync(new CreateTask(){BindingContext = taskViewModel});
         }
         private async void InProgressTaskPage(object sender, EventArgs e)
         {
-            var model = new TaskViewModel(new TaskRepo(App.DBpath))
+            var taskViewModel = new TaskViewModel(new TaskRepository(App.DBpath))
             {
                 TaskColumn = ((ColumnsViewModel)BindingContext).InProgressColumn
             };
-            await Navigation.PushAsync(new CreateTask() { BindingContext = model});
+            await Navigation.PushAsync(new CreateTask() { BindingContext = taskViewModel});
         }
         private async void DoneTaskPage(object sender, EventArgs e)
         {
-            var model = new TaskViewModel(new TaskRepo(App.DBpath))
+            var taskViewModel = new TaskViewModel(new TaskRepository(App.DBpath))
             {
                 TaskColumn = ((ColumnsViewModel)BindingContext).DoneColumn
             };
-            await Navigation.PushAsync(new CreateTask() {BindingContext = model});
+            await Navigation.PushAsync(new CreateTask() {BindingContext = taskViewModel});
         }
     }
 }

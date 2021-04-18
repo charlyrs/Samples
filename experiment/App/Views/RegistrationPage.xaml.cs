@@ -20,13 +20,20 @@ namespace App.Views
         }
         private async void ToMyPage(object sender, EventArgs e)
         {
-            var userVm = (UserViewModel)BindingContext;
-            await Navigation.PushModalAsync(new MyPage(userVm));
+            var registrationViewModel = (RegistrationViewModel)BindingContext;
+            var userViewModel = new UserViewModel(new UserRepository(App.DBpath))
+            {
+                UserPassword = registrationViewModel.UserPassword,
+                UserNickname = registrationViewModel.UserNickname,
+                UserEmail = registrationViewModel.UserEmail,
+                UserModel = registrationViewModel.UserModel
+            };
+            await Navigation.PushModalAsync(new MyPage(userViewModel));
         }
         private async void ToLogInPage(object sender, EventArgs e)
         {
-            var page= new LogInPage(new UserViewModel(new UserRepo(App.DBpath)));
-            await Navigation.PushAsync(page);
+            var logInPage= new LogInPage(new UserViewModel(new UserRepository(App.DBpath)));
+            await Navigation.PushAsync(logInPage);
 
         }
     }

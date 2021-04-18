@@ -9,51 +9,69 @@ namespace App.ViewModels
 {
     public class UserViewModel : INotifyPropertyChanged
     {
-        private readonly UserRepo _userRepo;
-        public User UserModel;
+        private readonly IUserRepository _userRepository;
 
+        public User UserModel { get; set;}
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }
         public string UserNickname { get; set; }
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public List<Project> UserProjects { get; set; }
+        public List<Project> UserProjects
+        {
+            get => UserModel.Projects;
+            set
+            {
+                UserModel.Projects = value;
+                OnPropertyChanged();
+            }
+        }
 
-       
+        public UserViewModel(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+
+        }
+
+        #region methods
         public async Task UpdateUserProjects()
         {
-              var user = await _userRepo.GetUserByNickname(UserNickname);
-              var userProjects = await _userRepo.GetProjects(user);
+              var user = await _userRepository.GetUserByNickname(UserNickname);
+              var userProjects = await _userRepository.GetProjects(user);
               UserProjects = userProjects;
               UserModel.Projects = userProjects;
         }
+       
+        #endregion
 
-        public ICommand AddCommand
+        #region commands
+
+        public ICommand RefreshCommand
         {
             get
             {
                 return new Command(async () =>
                 {
-                    var user = new User
-                    {
-                        Email = UserEmail,
-                        Password = UserPassword,
-                        Nickname = UserNickname,
-                        Projects = new List<Project>()
-                        
-                    };
-
-                    await _userRepo.AddUserAsync(user);
-                    UserModel = await _userRepo.GetUserByNickname(UserNickname);
+                    await UpdateUserProjects();
+                    RefreshData();
                 });
             }
         }
- 
-        public UserViewModel(UserRepo userRepo)
+        private void RefreshData()
         {
-            _userRepo = userRepo;
-
+            IsRefreshing = false;
         }
 
+        #endregion
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

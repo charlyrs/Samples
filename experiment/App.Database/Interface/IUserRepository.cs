@@ -5,7 +5,7 @@ using System.Text;
 
 namespace App
 {
-    public interface IUserRepo
+    public interface IUserRepository
     {
         Task<IEnumerable<User>> GetUsersAsync();
 
@@ -16,7 +16,12 @@ namespace App
         Task<bool> UpdateUserAsync(User product);
 
         Task<bool> RemoveUserAsync(int id);
+        Task<List<Project>> GetProjects(User user);
+        Task<User> GetUserByNickname(string name);
+        Task<bool> AddProjectToUserAsync(int userId, int projectId);
 
-        
+
+
+
     }
 }

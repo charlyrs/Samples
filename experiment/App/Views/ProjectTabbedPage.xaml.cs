@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App.Database;
 using App.Database.DataBase;
 using App.ViewModels;
 using Xamarin.Forms;
@@ -13,41 +14,41 @@ namespace App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectTabbedPage : TabbedPage
     {
-        public ProjectTabbedPage(ProjectViewModel model)
+        public ProjectTabbedPage(ProjectViewModel projectViewModel)
         {
             if (BindingContext == null)
             {
-                BindingContext = model;
+                BindingContext = projectViewModel;
             }
             else
             {
-                model = (ProjectViewModel) BindingContext;
+                projectViewModel = (ProjectViewModel) BindingContext;
             }
 
-            var toDo = model.ProjectColumns[0];
-            var inProgress = model.ProjectColumns[1];
-            var done = model.ProjectColumns[2];
-            var columnVm = new ColumnsViewModel(new ColumnRepo(App.DBpath))
+            var toDoColumn = projectViewModel.ProjectColumns[0];
+            var inProgressColumn = projectViewModel.ProjectColumns[1];
+            var doneColumn = projectViewModel.ProjectColumns[2];
+            var columnsViewModel = new ColumnsViewModel(new ProjectRepository(App.DBpath))
             {
-                ProjectId = model.ProjectID,
-                ToDoColumn = toDo,
-                InProgressColumn = inProgress,
-                DoneColumn = done
+                ProjectId = projectViewModel.ProjectId,
+                ToDoColumn = toDoColumn,
+                InProgressColumn = inProgressColumn,
+                DoneColumn = doneColumn
 
             };
 
-            ContentPage navigationPage = (new ProjectView(){BindingContext = columnVm});
-            ContentPage prPage = (new ProjectInfo(){BindingContext = model});
+            ContentPage projectView = (new ProjectView(){BindingContext = columnsViewModel});
+            ContentPage projectInfo = (new ProjectInfo(){BindingContext = projectViewModel});
 
 
-            navigationPage.Title = "Project";
-            prPage.Title = "Info";
+            projectView.Title = "Project";
+            projectInfo.Title = "Info";
             this.BarBackgroundColor = Color.Teal;
             this.BarTextColor = Color.White;
 
             
-            Children.Add(navigationPage);
-            Children.Add(prPage);
+            Children.Add(projectView);
+            Children.Add(projectInfo);
             InitializeComponent();
         }
     }
