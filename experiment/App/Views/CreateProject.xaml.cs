@@ -7,22 +7,26 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using App.ViewModels;
+using App.Services;
 
 namespace App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateProject : ContentPage
     {
-        private readonly UserViewModel _currentUser;
-        public CreateProject(ProjectViewModel projectViewModel, UserViewModel userViewModel)
+      
+       
+        public CreateProject(ProjectViewModel projectViewModel)
         {
-            _currentUser = userViewModel;
+           
             BindingContext = projectViewModel;
             InitializeComponent();
         }
-        private async void BackToProjects(object sender, EventArgs e)
+        private async void BackToProject(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+
         }
+
     }
 }

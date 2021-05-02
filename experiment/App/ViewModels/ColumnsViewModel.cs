@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -27,33 +29,33 @@ namespace App.ViewModels
         public Column DoneColumn;
         public int ProjectId { get; set; }
 
-        public List<ProjectTask> ToDoColumnTasks
+        public ObservableCollection<ProjectTask> ToDoColumnTasks
         {
-            get => ToDoColumn.Tasks;
+            get => new ObservableCollection<ProjectTask>(ToDoColumn.Tasks);
             set
             {
-                ToDoColumn.Tasks = value;
+                ToDoColumn.Tasks = value.ToList();
                 OnPropertyChanged();
 
             }
         }
 
-        public List<ProjectTask> InProgressColumnTasks
+        public ObservableCollection<ProjectTask> InProgressColumnTasks
         {
-            get => InProgressColumn.Tasks;
+            get => new ObservableCollection<ProjectTask>(InProgressColumn.Tasks);
             set
             {
-                InProgressColumn.Tasks = value;
+                InProgressColumn.Tasks = value.ToList();
                 OnPropertyChanged();
             }
         }
 
-        public List<ProjectTask> DoneColumnTasks
+        public ObservableCollection<ProjectTask> DoneColumnTasks
         {
-            get => DoneColumn.Tasks;
+            get => new ObservableCollection<ProjectTask>(DoneColumn.Tasks);
             set
             {
-                DoneColumn.Tasks = value;
+                DoneColumn.Tasks = value.ToList();
                 OnPropertyChanged();
             }
         }
@@ -73,10 +75,11 @@ namespace App.ViewModels
             try
             {
                 var columns = await _projectRepository.GetColumns(ProjectId);
-                ToDoColumn = columns[0];
-                InProgressColumn = columns[1];
-                DoneColumn = columns[2];
+                ToDoColumnTasks = new ObservableCollection<ProjectTask>(columns[0].Tasks);
+                InProgressColumnTasks =  new ObservableCollection <ProjectTask>(columns[1].Tasks);
+                DoneColumnTasks = new ObservableCollection<ProjectTask>(columns[2].Tasks);
                 return true;
+              
             }
             catch
             {

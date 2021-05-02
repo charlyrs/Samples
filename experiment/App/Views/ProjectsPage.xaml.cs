@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using App.Views;
 using App.ViewModels;
 using App.Database;
+using App.Database.DataBase;
 
 namespace App
 {
@@ -29,17 +30,20 @@ namespace App
         }
         private async void ToCreateProjectPage(object sender, EventArgs e)
         {
-            var u = (UserViewModel)BindingContext;
-            await Navigation.PushAsync(new CreateProject(_selectedViewModel, u));
+            await Navigation.PushAsync(new CreateProject(_selectedViewModel));
         }
         
-        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs eventArgs)
         {
-            
-            var selectedProject = (Project)e.SelectedItem;
-            await _selectedViewModel.UpdateViewModel(selectedProject.Id);
+            if (eventArgs.SelectedItem == null) return;
+            ((ListView)sender).SelectedItem = null;
+            var id = ((Project)eventArgs.SelectedItem).Id;
+
+            await _selectedViewModel.UpdateViewModel(id);
             var projectTabbedPage = new ProjectTabbedPage(_selectedViewModel);
+
             await Navigation.PushAsync(projectTabbedPage);
+            
         }
 
     }

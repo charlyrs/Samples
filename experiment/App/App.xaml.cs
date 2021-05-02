@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 using App.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using App.Database.DataBase;
 
 namespace App
 {

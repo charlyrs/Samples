@@ -11,10 +11,12 @@
             <Entry 
                 Placeholder="Description"
                 Text="{Binding ProjectsDescription}"/>
+            
             <Button 
+
                 Text="Add"
                 Command="{Binding AddCommand}"
-                Clicked="BackToProjects"
+                Clicked="BackToProject"
                 BackgroundColor="Teal"
                 TextColor="White"
                 Margin="10,20,10,10"

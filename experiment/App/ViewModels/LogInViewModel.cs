@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
+using App.Services;
 using App.Views;
 using Microsoft.EntityFrameworkCore;
 using Xamarin.Forms;
@@ -12,6 +13,7 @@ namespace App.ViewModels
     public class LogInViewModel : INotifyPropertyChanged
     {
         private readonly IUserRepository _userRepository;
+        private readonly NavigationService _navigationService = new NavigationService();
 
         public string UserNickname { get; set; }
         public string UserPassword { get; set; }

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using App.Database.DataBase;
 using Xamarin.Forms;
 using App.Interface;
+using App.Services;
 
 namespace App.ViewModels
 {
@@ -16,6 +17,8 @@ namespace App.ViewModels
     {
         private readonly IProjectRepository _projectRepository;
         private readonly IUserRepository _userRepository;
+        private readonly CheckInputService _checkInputService = new CheckInputService();
+        private readonly NavigationService _navigationService = new NavigationService();
         public User CurrentUser;
 
         public string ProjectTitle { get; set; }
@@ -24,7 +27,7 @@ namespace App.ViewModels
         public  List<Column> ProjectColumns { get; set; }
         public List <User> ProjectUsers { get; set; }
 
-        
+        #region methods
         public async Task<bool> UpdateViewModel(int projectId)
         {
             try
@@ -42,24 +45,41 @@ namespace App.ViewModels
                 return false;
             }
         }
-        
+        private async Task<int> AddProject()
+        {
+            var project = new Project
+            {
+                Title = ProjectTitle,
+                Description = ProjectsDescription,
+                Users = new List<User>()
+            };
+            var track = await _projectRepository.AddProjectAsync(project);
+            await _projectRepository.AddDefaultColumnsToProject(project.Id);
+            ProjectColumns = await _projectRepository.GetColumns(project.Id);
+            ProjectId = project.Id;
+            await _projectRepository.AddUserToProjectAsync(CurrentUser.Id, project.Id);
+            return ProjectId;
+        }
+        #endregion
+
+
         public ICommand AddCommand
         {
             get
             {
                 return new Command(async () =>
                 {
-                    var project = new Project
+                    var correctInput = _checkInputService.CheckProjectInput(this);
+                    if (!correctInput)
                     {
-                        Title = ProjectTitle,
-                        Description = ProjectsDescription,
-                        Users = new List<User>()
-                    };
-                    var track = await _projectRepository.AddProjectAsync(project);
-                    await _projectRepository.AddDefaultColumnsToProject(project.Id);
-                    ProjectColumns = await _projectRepository.GetColumns(project.Id);
-                    ProjectId = project.Id;
-                    await _projectRepository.AddUserToProjectAsync(CurrentUser.Id, project.Id);
+                        await Application.Current.MainPage.DisplayAlert("Project", "Title and description can't be empty", "Ok");
+                    }
+                    else
+                    {
+                        await AddProject();
+                        
+
+                    }
                 });
             }
         }

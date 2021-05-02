@@ -4,19 +4,14 @@
              x:DataType="viewmodels:ColumnsViewModel"
              x:Class="App.Views.ProjectView">
     <ContentPage.Content>
-        
-            <ScrollView Orientation="Horizontal"  HorizontalOptions="FillAndExpand" Background="Teal" >
+        <RefreshView Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}"
+                     RefreshColor="Teal">
+            <ScrollView Orientation="Both"  HorizontalOptions="FillAndExpand" Background="Teal" >
            
                 <StackLayout Orientation="Horizontal">
-                <RefreshView Command="{Binding RefreshCommand}"
-                           IsRefreshing="{Binding IsRefreshing}">
-                    <ScrollView>
-                        
-                    </ScrollView>
-                    
-                </RefreshView>
 
-                <Frame  CornerRadius="20" Margin="10,0,5,10" WidthRequest="170"  >
+                    <Frame  CornerRadius="20" Margin="10,0,5,10" WidthRequest="170"  >
              <StackLayout >
                  <Label Text ="To Do"
                         TextColor="Teal"
@@ -29,9 +24,7 @@
                          Margin="0,20,0,10"
                          Clicked="ToDoTaskPage"></Button>
                  <ListView ItemsSource="{Binding ToDoColumnTasks}"
-                           IsPullToRefreshEnabled="True"
-                           RefreshCommand="{Binding RefreshCommand}"
-                           IsRefreshing="{Binding IsRefreshing}"
+                           
                            ></ListView>
                         
              </StackLayout>
@@ -49,9 +42,7 @@
                                 Clicked="InProgressTaskPage"
                                 Margin="0,20,0,10"></Button>
                         <ListView ItemsSource="{Binding InProgressColumnTasks}"
-                                  IsPullToRefreshEnabled="True"
-                                  RefreshCommand="{Binding RefreshCommand}"
-                                  IsRefreshing="{Binding IsRefreshing}"></ListView>
+                                 ></ListView>
                     </StackLayout>
                 
                 </Frame>
@@ -67,14 +58,13 @@
                                 Clicked="DoneTaskPage"
                                 Margin="0,20,0,10"></Button>
                         <ListView ItemsSource="{Binding DoneColumnTasks}"
-                                  IsPullToRefreshEnabled="True"
-                                  RefreshCommand="{Binding RefreshCommand}"
-                                  IsRefreshing="{Binding IsRefreshing}"></ListView>
+                                  ></ListView>
 </StackLayout>
                 </Frame>
            
         </StackLayout>
        </ScrollView>
-        
+        </RefreshView>
+
     </ContentPage.Content>
 </ContentPage>

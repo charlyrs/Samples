@@ -14,8 +14,9 @@
                        RefreshCommand="{Binding RefreshCommand}"
                        IsRefreshing="{Binding IsRefreshing}"
                        RefreshControlColor="Teal"
-                         >
-                
+            >
+               
+
             </ListView>
             <Button 
                 Text=" + Add Project"

@@ -58,9 +58,19 @@ namespace App.ViewModels
                     {
                         await _userRepository.AddUserAsync(user);
                         UserModel = user;
-                        _navigationService.SignUpNavigation(this);
+                        await _navigationService.SignUpNavigation(this);
                     }
 
+                });
+            }
+        }
+        public ICommand ToLoginPage
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await _navigationService.ToLoginPage();
                 });
             }
         }

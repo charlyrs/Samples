@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using App.Database.DataBase;
 using App.ViewModels;
 
 namespace App.Services
@@ -28,6 +29,14 @@ namespace App.Services
             }
             return true;
 
+        }
+        public bool CheckProjectInput (ProjectViewModel projectViewModel)
+        {
+            if(projectViewModel.ProjectTitle == null || projectViewModel.ProjectsDescription == null)
+            {
+                return false;
+            }
+            return true;
         }
 
     }
